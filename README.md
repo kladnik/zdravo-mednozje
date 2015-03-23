@@ -1,2 +1,2 @@
 # zdravo-mednozje
-Datoteke računalniškega dela supina na projektu ASPO
+Datoteke računalniškega dela skupine na projektu ASPO
