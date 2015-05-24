@@ -52,24 +52,14 @@ public class TestRestService {
 	public Response getQuestionsFromDatabase(){
 		entityManager = Resource.getEntityManager();
 		Query query = entityManager.createQuery("FROM si.zdravomednozje.model.Question");
-//		List<Question> questions = query.getResultList();
 		ExclusionStrategy excludeManyToOne = new ManyToOneAnnotationExclusionStrategy();
 		GsonBuilder gsonBuilder = new GsonBuilder();
 		gsonBuilder.setDateFormat("HH:mm:ss.SSS dd-MM-yyyy")
 			.setExclusionStrategies(excludeManyToOne);
 		Gson gson = gsonBuilder.create();
 
-		//GsonBuilder gsonBuilder = new GsonBuilder();
-		//gsonBuilder.setDateFormat("HH:mm:ss.SSS dd-MM-yyyy");
-		//Gson gson = gsonBuilder.create();
-		//String response = gson.toJson(query.getResultList());
 		String response = gson.toJson(query.getResultList());
-		//String response = "hello";
 		entityManager.close();
-		
-		//Build Response
-		//String response = toJSONString(questions);
-		
 		return Response.ok(response).build();
 	}
 /*	public String toJSONString(List<Question> questions){
