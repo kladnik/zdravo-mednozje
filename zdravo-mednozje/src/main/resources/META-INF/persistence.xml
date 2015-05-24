@@ -9,7 +9,7 @@
 	<persistence-unit name="persistenceUnit1" transaction-type="RESOURCE_LOCAL">
 	
 	    <provider>org.hibernate.ejb.HibernatePersistence</provider>
-		<jta-data-source>java:/test1</jta-data-source>
+		<jta-data-source>java:/jdbc/test1</jta-data-source>
 		<class>si.zdravomednozje.model.Question</class>
 		<class>si.zdravomednozje.model.Answer</class>
 		<class>si.zdravomednozje.model.Dependency</class>

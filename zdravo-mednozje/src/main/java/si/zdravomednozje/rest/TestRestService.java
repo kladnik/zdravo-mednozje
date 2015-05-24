@@ -12,6 +12,9 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import si.zdravomednozje.model.Answer;
 import si.zdravomednozje.model.Dependency;
 import si.zdravomednozje.model.Question;
@@ -38,22 +41,25 @@ public class TestRestService {
 		entityManager = Resource.getEntityMangger();
 
 		Query query = entityManager.createQuery("FROM si.zdravomednozje.model.Question");
-		List<Question> questions = query.getResultList();
-		
+		//List<Question> questions = query.getResultList();
+		GsonBuilder gsonBuilder = new GsonBuilder();
+		gsonBuilder.setDateFormat("HH:mm:ss.SSS dd-MM-yyyy");
+		Gson gson = gsonBuilder.create();
+		String response = gson.toJson(query.getResultList());
 		entityManager.close();
 		
 		//Build Response
-		String response = toJSONString(questions);
+		//String response = toJSONString(questions);
 		
 		return Response.ok(response).build();
 	}
 	
 	public String toJSONString(List<Question> questions){
-//		GsonBuilder gsonBuilder = new GsonBuilder();
-//		gsonBuilder.setDateFormat("HH:mm:ss.SSS dd-MM-yyyy");
-//		Gson gson = gsonBuilder.create();
-//		return gson.toJson(question.getAnswers());
-		String JSONresponse = "[\n";
+		GsonBuilder gsonBuilder = new GsonBuilder();
+		gsonBuilder.setDateFormat("HH:mm:ss.SSS dd-MM-yyyy");
+		Gson gson = gsonBuilder.create();
+		return gson.toJson(questions);
+/*		String JSONresponse = "[\n";
 		for (int i = 0; i < questions.size(); i++) {
 			Question question = questions.get(i);
 			JSONresponse += "{\n";
@@ -99,6 +105,6 @@ public class TestRestService {
 			}
 		}
 		JSONresponse += "]";
-		return JSONresponse;
+		return JSONresponse;*/
 	}
 }
