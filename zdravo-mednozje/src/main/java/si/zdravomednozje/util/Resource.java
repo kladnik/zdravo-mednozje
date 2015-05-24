@@ -10,7 +10,7 @@ public class Resource {
 	private static EntityManagerFactory factory;
 	
 	@Produces
-	public static EntityManager getEntityMangger(){
+	public static EntityManager getEntityManager(){
 		factory = Persistence.createEntityManagerFactory("persistenceUnit1");
 		EntityManager entityManager = factory.createEntityManager();
 		return entityManager;
@@ -22,6 +22,4 @@ public class Resource {
 		return Persistence.createEntityManagerFactory("persistenceUnit1");
 	}
 	
-	
-
 }

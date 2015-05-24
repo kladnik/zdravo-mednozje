@@ -5,6 +5,7 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.ManyToOne;
 import javax.persistence.Query;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -12,6 +13,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import com.google.gson.ExclusionStrategy;
+import com.google.gson.FieldAttributes;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -33,19 +36,35 @@ public class TestRestService {
 	public Response getRandomNumber(){
 		return Response.ok("{\"numberR\":\"" + Math.random() + "\"}").build();
 	}
-	
+
+	private static class ManyToOneAnnotationExclusionStrategy implements ExclusionStrategy {
+		public boolean shouldSkipClass(Class<?> clazz) {
+			return clazz.getAnnotation(ManyToOne.class) != null;
+		}
+
+		public boolean shouldSkipField(FieldAttributes f) {
+			return f.getAnnotation(ManyToOne.class) != null;
+		}
+	}
 	@GET		
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("questions")
 	public Response getQuestionsFromDatabase(){
-		entityManager = Resource.getEntityMangger();
-
+		entityManager = Resource.getEntityManager();
 		Query query = entityManager.createQuery("FROM si.zdravomednozje.model.Question");
-		//List<Question> questions = query.getResultList();
+//		List<Question> questions = query.getResultList();
+		ExclusionStrategy excludeManyToOne = new ManyToOneAnnotationExclusionStrategy();
 		GsonBuilder gsonBuilder = new GsonBuilder();
-		gsonBuilder.setDateFormat("HH:mm:ss.SSS dd-MM-yyyy");
+		gsonBuilder.setDateFormat("HH:mm:ss.SSS dd-MM-yyyy")
+			.setExclusionStrategies(excludeManyToOne);
 		Gson gson = gsonBuilder.create();
+
+		//GsonBuilder gsonBuilder = new GsonBuilder();
+		//gsonBuilder.setDateFormat("HH:mm:ss.SSS dd-MM-yyyy");
+		//Gson gson = gsonBuilder.create();
+		//String response = gson.toJson(query.getResultList());
 		String response = gson.toJson(query.getResultList());
+		//String response = "hello";
 		entityManager.close();
 		
 		//Build Response
@@ -53,13 +72,7 @@ public class TestRestService {
 		
 		return Response.ok(response).build();
 	}
-	
-	public String toJSONString(List<Question> questions){
-		GsonBuilder gsonBuilder = new GsonBuilder();
-		gsonBuilder.setDateFormat("HH:mm:ss.SSS dd-MM-yyyy");
-		Gson gson = gsonBuilder.create();
-		return gson.toJson(questions);
-/*		String JSONresponse = "[\n";
+/*	public String toJSONString(List<Question> questions){
 		for (int i = 0; i < questions.size(); i++) {
 			Question question = questions.get(i);
 			JSONresponse += "{\n";
@@ -105,6 +118,6 @@ public class TestRestService {
 			}
 		}
 		JSONresponse += "]";
-		return JSONresponse;*/
-	}
+		return JSONresponse;
+	} */
 }
