@@ -1,11 +1,209 @@
- body {
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
-  }
+@font-face {
+    font-family: 'segoePro';
+    src: url("../font/SegoePro-Light.ttf");
+}
 
-  main {
-    flex: 1 0 auto;
-  }
+html {
+	width: 100%;
+	min-height: 100%;
+	position: relative;
+}
 
-  
+body {
+	width: 100%;
+	height: 100%;
+	margin: 0 auto -155px;
+	padding: 0;
+}
+
+#vprasalnik {
+	background-color: #b1dde9;
+	height: 33.333%;
+}
+
+#opis {
+	background-color: #82becf;
+	height: 33.333%;
+}
+
+#pregled {
+	background-color: #8e9cd7;
+	height: 33.333%;
+}
+
+#simptomi {
+	background-color: #B9C3EC;
+	height: 33.333%;
+}
+
+#zascita {
+	background-color: #b4f0c6;
+	height: 33.333%;
+}
+
+#opisProjekta {
+	background-color: #88DEA2;
+	height: 33.333%;
+}
+
+#survey_icon {
+	height: 70%;
+}
+
+#gumb {
+	background-color: #b1dde9;
+}
+
+#section {
+	background-color: #b1dde9;
+}
+
+.cd-modal-content {
+	background-color: white;
+}
+
+.cd-modal-action {
+  position: relative;
+}
+.cd-modal-action .btn {
+  width: 12.5em;
+  height: 4em;
+  background-color: #123758;
+  border-radius: 5em;
+  transition: color 0.2s 0.3s, width 0.3s 0s;
+}
+.cd-modal-action .btn.to-circle {
+  width: 4em;
+  color: transparent;
+  transition: color 0.2s 0s, width 0.3s 0.2s;
+}
+.cd-modal-action .cd-modal-bg {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-2em);
+  width: 4em;
+  height: 4em;
+  /*background-color: #123758;*/
+  border-radius: 50%;
+  opacity: 0;
+  visibility: hidden;
+  transition: visibility 0s 0.5s;
+}
+.cd-modal-action .cd-modal-bg.is-visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.centerLeft {
+	float: left;
+    display: inline-block;
+    vertical-align: middle;
+    margin-top: 4%;
+}
+
+.centerRight {
+	float: right;
+    display: inline-block;
+    vertical-align: middle;
+    margin-top: 4%;
+}
+
+#name {
+	font-family: 'segoePro', Helvetica;
+	font-size: 50px;
+	color: #82becf;
+	display: inline-block;
+	vertical-align: middle;
+	margin-top: 16.666%;
+}
+
+.navbar {
+	font-family: 'segoePro', Helvetica;
+	font-size: 15px;
+	background-color: #82becf;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+	color: white;
+}
+
+.navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {
+	background-color: #b1dde9;
+}
+
+.stVprasanja {
+	font-family: 'segoePro', Helvetica;
+	text-align: center;
+	color: #82becf;
+	font-size: 30px;
+}
+
+.radio {
+	font-family: 'segoePro', Helvetica;
+	text-align: center;
+	font-size: 20px;
+}
+
+#break {
+	display: block;
+	width: 450px;
+	word-wrap: break-word;
+	margin-left: 250px;
+}
+
+.div1 {
+	background-color: #b1dde9;
+}
+
+.div2 {
+	background-color: #82becf;
+}
+
+.div3 {
+	background-color: #8e9cd7;
+}
+
+.close3 {
+	background-color: #B9C3EC;
+}
+
+.no-touch .close3:hover {
+	background-color: #8e9cd7;
+}
+
+.div4 {
+	background-color: #B9C3EC;
+}
+
+.div5 {
+	background-color: #b4f0c6;
+}
+
+.div6 {
+	background-color: #88DEA2;
+}
+
+.close6 {
+	background-color: #b4f0c6;
+}
+
+.no-touch .close6:hover {
+	background-color: #88DEA2;
+}
+
+#accord1:hover {
+	text-decoration: none;
+	border-bottom: 1px solid #8e9cd7;
+}
+
+.radio {
+	color: #7F7F7F;
+}
+
+#naprej {
+	color: #82becf;
+	font-size: 18px;
+	padding: 15px;
+	border-radius: 50%;
+}
