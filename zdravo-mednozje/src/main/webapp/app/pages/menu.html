@@ -1,0 +1,14 @@
+<div class="row row-center" id="main-menu">
+	<div class="col-md-12 text-center">
+		<h1>ASPO</h1>
+		<h3>Aplikacija o spolno prenosljivih okužbah</h3>
+	</div>
+
+	<div class="col-md-offset-4 col-md-4" >
+		<div class="col-md-4" ng-repeat="menu in main.menuItems">
+			<a class="main-circle" href="{{menu.link}}" ng-click="main.navigate()">
+				<div class="main-text text-center">{{menu.text}}</div>
+			</a>
+		</div>
+	</div>
+</div>

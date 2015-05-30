@@ -1,0 +1,21 @@
+<carousel interval="-1" id="survey-questions">
+  <slide 
+		ng-repeat="q in displayedQuestions"
+		active="q.active">
+	{{q.text}}
+	
+	<ul>
+		<li ng-repeat="ans in q.answers">
+			<input 
+			type="{{ q.type == 0 ? 'checkbox' : 'radio'}}"
+			name="ansForQ{{q.id}}"
+			ng-model="ans.answered" 
+			value="{{ans.answerID}}">
+			{{ ans.answerText }}
+		</li>
+	</ul>
+	
+	<!--<button ng-click="back()">Nazaj</button>-->
+	<button ng-click="next()">Naprej</button>
+  </slide>
+</carousel>
