@@ -42,6 +42,6 @@
 			that.show = true;
 		}
 		
-		that.show = $location.url() != '/' ;
+		that.show = $location.url().length > 1 ;
 	}]);
 })();

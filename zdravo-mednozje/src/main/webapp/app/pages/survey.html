@@ -1,21 +1,28 @@
-<carousel interval="-1" id="survey-questions">
-  <slide 
-		ng-repeat="q in displayedQuestions"
-		active="q.active">
-	{{q.text}}
-	
-	<ul>
-		<li ng-repeat="ans in q.answers">
-			<input 
-			type="{{ q.type == 0 ? 'checkbox' : 'radio'}}"
-			name="ansForQ{{q.id}}"
-			ng-model="ans.answered" 
-			value="{{ans.answerID}}">
-			{{ ans.answerText }}
-		</li>
-	</ul>
-	
-	<!--<button ng-click="back()">Nazaj</button>-->
-	<button ng-click="next()">Naprej</button>
-  </slide>
-</carousel>
+<div class="col-md-8 col-md-offset-2 modalWin">
+	<p class="title" style="color: #b1dde9;">Vprašalnik</p>
+	<div class="panel col-md-6 col-md-offset-3" style="padding: 20px;">
+		<carousel interval="-1" id="survey-questions">
+		  <slide 
+				ng-repeat="q in displayedQuestions"
+				active="q.active">
+			<div id="titleSurvey">
+			{{q.text}}
+			</div>
+			
+			<ul id="ulSurvey">
+				<li ng-repeat="ans in q.answers">
+					<input 
+					type="{{ q.type == 2 ? 'checkbox' : 'radio'}}"
+					name="ansForQ{{ans.id}}"
+					ng-model="ans.selected"
+					ng-value="true">
+					{{ ans.answerText }}
+				</li>
+			</ul>
+			
+			<!--<button ng-click="back()">Nazaj</button>-->
+			<button class="btn btn-primary" id="button" ng-click="next()">Naprej</button>
+		  </slide>
+		</carousel>
+	</div>
+</div>

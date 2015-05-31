@@ -23,7 +23,7 @@
 				controller  : 'BlankCtrl'
 			})
 			.when('/symptoms', {
-				templateUrl : 'app/pages/survey.html',
+				templateUrl : 'app/pages/symptoms.html',
 				controller  : 'BlankCtrl'
 			})
 			.when('/medical-examination', {
@@ -41,4 +41,10 @@
 			.otherwise({ redirectTo: '/' });
 	});
 	
+	/*
+	app.run(function($rootScope, $templateCache) {
+	   $rootScope.$on('$viewContentLoaded', function() {
+		  $templateCache.removeAll();
+	})});
+	*/
 })();

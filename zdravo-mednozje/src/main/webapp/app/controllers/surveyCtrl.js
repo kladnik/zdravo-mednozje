@@ -49,7 +49,7 @@
 			}
 			
 			// If all conditions were met, return true, otherwise false.
-			return question.dependencies.length == matchedDependecies;
+			return question.dependencies.length <= matchedDependecies;
 		}
 		
 		$scope.back = function() {
@@ -59,25 +59,29 @@
 			changeQuestion(-1);
 		}
 		
-		$scope.next = function() {	
-			// Save all asnwers and remove them from questions array
-			for(var i = 0; i < $scope.displayedQuestions.length; i++) {
-				var a = $scope.displayedQuestions[i];
+		$scope.next = function() {		
+			// Save all asnwers from current question
+			if($scope.displayedQuestions.length > 0)
+			{
+				var q = $scope.displayedQuestions[that.displayNr];
 				
-				that.answered.push({
-					questionId: a.qId,
-					answerId: a.aId
-				});
-				
-				that.questions = that.questions.filter(function(answer) {
-					return answer.questionId !== a.qId;
-				});
+				// Go through every possible answers, check if it's answered
+				// and save it to answerd array
+				for(var i = 0; i < q.answers.length; i++)
+					if(q.answers[i].selected)
+						that.answered.push({
+							questionId: q.id,
+							answerId: q.answers[i].answerID
+						});
 			}
 			
 			// Find all questions that should be displayed afterwards
+			// Delete it from all questions
 			for(var i = 0; i < that.questions.length; i++) {
-				if(canDisplay(that.questions[i]))
+				if(canDisplay(that.questions[i])) {
 					$scope.displayedQuestions.push(that.questions[i]);
+					that.questions.splice(i--, 1);
+				}
 			}
 			
 			// No more questions left to display
@@ -86,7 +90,7 @@
 				end();
 			else // Otherwise sort questions and display
 				$scope.displayedQuestions.sort(function (a, b) {
-					return a.sequence >  b.sequence;
+					return a.sequence -  b.sequence;
 				});
 				
 			// Move to next question
@@ -98,12 +102,16 @@
 		aspoService.getQuestions().then(function (questions) {
 			// Add property to indicate which one is showed
 			// Required for Bootstrap UI Carousel
-			for(var i = 0; i < questions.length; i++)
+			for(var i = 0; i < questions.length; i++) {
 				questions[i].active = false;
-			
+				
+				for(var j = 0; j < questions[i].answers.length; j++)
+					questions[i].answers[j].selected = false;
+			}
+				
 			// Sort based on display order
 			$scope.displayedQuestions.sort(function (a, b) {
-				return a.sequence > b.sequence;
+				return a.sequence - b.sequence;
 			});
 			
 			// Mark first one as active and save all

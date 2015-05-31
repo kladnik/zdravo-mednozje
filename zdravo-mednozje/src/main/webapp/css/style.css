@@ -30,7 +30,6 @@ html, body {
 		width: 150px;
 		height: 150px;
 		margin-bottom: 10px;
-		
 		background: #50b8b0;
 		display: table;
 		border-radius: 50%;
@@ -66,15 +65,15 @@ html, body {
 	}
 	
 	#main-view-close {
-		position: absolute;
 		right: 0;
 		top: 0;
 	}
 	
 	 #close {
-		position: absolute;
-		top: 50px;
-		right: 50px;
+		position: fixed;
+		z-index: 1;
+		top: 100px;
+		right: 130px;
 		height: 50px;
 		width: 50px;
 		border-radius: 50%;
@@ -154,7 +153,7 @@ html, body {
 	}
 	
 	.headingProtection {
-		color: #88DEA2; 
+		color: #b3db5a; 
 		font-size: 25px;
 		margin-bottom: 40px;
 		margin-top: 40px;
@@ -210,4 +209,24 @@ html, body {
 		margin-bottom: 40px;
 		margin-top: 40px;
 	}
+	
+	#ulSurvey{
+		list-style-type: none; 
+		line-height: 130%; 	
+		color: #7F7F7F;  
+		font-size: 20px;
+		margin-top: 22px;
+		margin-bottom: 30px; 
+	}
+	
+	#titleSurvey {
+		text-align: left;
+		font-size: 25px;
+		color: #82becf;
+	}
+	
+	#button {
+		text-align: left;
+	}
+	
 	
